@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--08-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Project_08" customModuleProvider="target" sceneMemberID="viewController">
@@ -29,14 +29,51 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="08" id="4xz-gn-5Qs">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="4GI-nz-FvF"/>
+                    <navigationItem key="navigationItem" id="4xz-gn-5Qs">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="4GI-nz-FvF">
+                            <connections>
+                                <action selector="pressDone:" destination="BYZ-38-t0r" id="Gkk-q2-YNU"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="firstTextField" destination="lC9-D9-jBe" id="W4Q-e9-b4y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2888.8000000000002" y="776.76161919040487"/>
+        </scene>
+        <!--Second View Controller-->
+        <scene sceneID="V2A-iT-d1A">
+            <objects>
+                <viewController storyboardIdentifier="SLSecondView" id="bRv-1I-jmD" customClass="SLSecondViewController" customModule="Project_08" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2Ub-NI-Gu2"/>
+                        <viewControllerLayoutGuide type="bottom" id="jmk-m9-7eR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Nsh-WG-8AM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="123" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wex-TI-qTv">
+                                <frame key="frameInset" minX="16" minY="76" width="343" height="571"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="secondTextFiled" destination="wex-TI-qTv" id="qIN-9H-dic"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dRo-tu-Hne" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3624.8000000000002" y="776.76161919040487"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SVx-rP-zAc">
