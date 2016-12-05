@@ -9,6 +9,8 @@
 import UIKit
 
 class SLEntryListTableViewController: UITableViewController {
+    
+    var entryList : [SLEntry] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +20,12 @@ class SLEntryListTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
          self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
+        
+        //mock for test
+        _ = SLEntryDB.sharedInstance.addEntry(ctext: "aaa", cimage: "111", clocation: "222", cdate: Date.init())
+        _ = SLEntryDB.sharedInstance.addEntry(ctext: "bbb", cimage: "111", clocation: "222", cdate: Date.init())
+        
+        self.entryList = SLEntryDB.sharedInstance.getEntrys()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,23 +37,24 @@ class SLEntryListTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.entryList.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
+        cell.textLabel?.text = self.entryList[indexPath.row].text
 
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.

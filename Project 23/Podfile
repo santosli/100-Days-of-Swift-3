@@ -4,6 +4,6 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'Project 23' do
-	pod 'SwiftyDB'
+	pod 'SQLite.swift', '~> 0.11.0'
 end
 

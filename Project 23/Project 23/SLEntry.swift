@@ -9,9 +9,17 @@
 import UIKit
 
 class SLEntry: NSObject {
-    var id : Int!
+    let id : Int64!
     var text : String!
     var image : String!
     var location : String!
     var date : Date!
+    
+    init(id: Int64, text: String, image: String, location: String, date: Date) {
+        self.id = id
+        self.text = text
+        self.image = image
+        self.location = location
+        self.date = date
+    }
 }
