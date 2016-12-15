@@ -11,17 +11,11 @@ import SQLite
 class SLEntryDB {
     static let sharedInstance = SLEntryDB()
     private let db : Connection?
-    
-//    let id : Int64!
-//    var text : String!
-//    var image : String!
-//    var location : String!
-//    var date : Date!
 
     private let entrys = Table("entrys")
     private let id = Expression<Int64>("id")
     private let text = Expression<String>("text")
-    private let image = Expression<String>("image")
+    private let imagePath = Expression<String>("imagePath")
     private let location = Expression<String>("location")
     private let date = Expression<Date>("date")
     
@@ -30,6 +24,7 @@ class SLEntryDB {
         
         do {
             db = try Connection("\(path)/SLEntry.sqlite3")
+            print("bbb: \(path)")
         } catch {
             db = nil
             print ("Unable to open database")
@@ -43,7 +38,7 @@ class SLEntryDB {
             try db!.run(entrys.create(ifNotExists: true) { table in
                 table.column(id, primaryKey: true)
                 table.column(text)
-                table.column(image)
+                table.column(imagePath)
                 table.column(location)
                 table.column(date)
             })
@@ -52,16 +47,35 @@ class SLEntryDB {
         }
     }
     
-    func addEntry(ctext: String, cimage: String, clocation: String, cdate: Date) -> Int64? {
+    func addEntry(ctext: String, cimagePath: String, clocation: String, cdate: Date) -> SLEntry! {
         do {
-            let insert = entrys.insert(text <- ctext, image <- cimage, location <- clocation, date <- cdate)
+            let insert = entrys.insert(text <- ctext, imagePath <- cimagePath, location <- clocation, date <- cdate)
             let id = try db?.run(insert)
             
-            return id!
+            return getEntry(by: id!)
         } catch {
             print("Insert error")
-            return -1
+            return nil
         }
+    }
+    
+    func getEntry(by Id: Int64) -> SLEntry {
+        var entrys = [SLEntry]()
+        
+        do {
+            for entry in try db!.prepare(self.entrys.select(*).filter(id == Id)){
+                entrys.append(SLEntry(
+                    id: entry[id],
+                    text: entry[text],
+                    imagePath: entry[imagePath],
+                    location: entry[location],
+                    date: entry[date]))
+            }
+        } catch {
+            print("Select error")
+        }
+        
+        return entrys[0]
     }
     
     func getEntrys() -> [SLEntry] {
@@ -72,7 +86,7 @@ class SLEntryDB {
                 entrys.append(SLEntry(
                     id: entry[id],
                     text: entry[text],
-                    image: entry[image],
+                    imagePath: entry[imagePath],
                     location: entry[location],
                     date: entry[date]))
             }
@@ -88,7 +102,7 @@ class SLEntryDB {
         do {
             let update = entry.update([
                 text <- newEntry.text,
-                image <- newEntry.image,
+                imagePath <- newEntry.imagePath,
                 location <- newEntry.location,
                 date <- newEntry.date
                 ])

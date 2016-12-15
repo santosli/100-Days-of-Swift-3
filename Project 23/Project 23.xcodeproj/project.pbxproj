@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		291890C99DB0E3E1AA9458C6 /* Pods_Project_23.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA91987FA47FD71457DDFEC /* Pods_Project_23.framework */; };
 		6BDE89331DF511FB003CFD9E /* SLEntryDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BDE89321DF511FB003CFD9E /* SLEntryDB.swift */; };
+		6BDE89351DF556EA003CFD9E /* SLEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BDE89341DF556EA003CFD9E /* SLEntryTableViewCell.swift */; };
+		6BDE89371DF567DC003CFD9E /* SLEntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BDE89361DF567DC003CFD9E /* SLEntryDetailViewController.swift */; };
 		6BE68DBF1DEEEB5F00F90DF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE68DBE1DEEEB5F00F90DF9 /* AppDelegate.swift */; };
 		6BE68DC41DEEEB5F00F90DF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE68DC21DEEEB5F00F90DF9 /* Main.storyboard */; };
 		6BE68DC61DEEEB5F00F90DF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BE68DC51DEEEB5F00F90DF9 /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 
 /* Begin PBXFileReference section */
 		6BDE89321DF511FB003CFD9E /* SLEntryDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLEntryDB.swift; sourceTree = "<group>"; };
+		6BDE89341DF556EA003CFD9E /* SLEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLEntryTableViewCell.swift; sourceTree = "<group>"; };
+		6BDE89361DF567DC003CFD9E /* SLEntryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLEntryDetailViewController.swift; sourceTree = "<group>"; };
 		6BE68DBB1DEEEB5F00F90DF9 /* Project 23.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project 23.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BE68DBE1DEEEB5F00F90DF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6BE68DC31DEEEB5F00F90DF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -70,9 +74,11 @@
 				6BE68DC51DEEEB5F00F90DF9 /* Assets.xcassets */,
 				6BE68DC71DEEEB6000F90DF9 /* LaunchScreen.storyboard */,
 				6BE68DCA1DEEEB6000F90DF9 /* Info.plist */,
-				6BE68DD01DEEEC1200F90DF9 /* SLEntryListTableViewController.swift */,
 				6BE68DD21DEEF03800F90DF9 /* SLEntry.swift */,
 				6BDE89321DF511FB003CFD9E /* SLEntryDB.swift */,
+				6BE68DD01DEEEC1200F90DF9 /* SLEntryListTableViewController.swift */,
+				6BDE89341DF556EA003CFD9E /* SLEntryTableViewCell.swift */,
+				6BDE89361DF567DC003CFD9E /* SLEntryDetailViewController.swift */,
 			);
 			path = "Project 23";
 			sourceTree = "<group>";
@@ -124,7 +130,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = santos;
 				TargetAttributes = {
 					6BE68DBA1DEEEB5F00F90DF9 = {
@@ -220,8 +226,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BE68DBF1DEEEB5F00F90DF9 /* AppDelegate.swift in Sources */,
+				6BDE89371DF567DC003CFD9E /* SLEntryDetailViewController.swift in Sources */,
 				6BE68DD11DEEEC1200F90DF9 /* SLEntryListTableViewController.swift in Sources */,
 				6BE68DD31DEEF03800F90DF9 /* SLEntry.swift in Sources */,
+				6BDE89351DF556EA003CFD9E /* SLEntryTableViewCell.swift in Sources */,
 				6BDE89331DF511FB003CFD9E /* SLEntryDB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

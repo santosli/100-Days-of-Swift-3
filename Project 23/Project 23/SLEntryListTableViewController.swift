@@ -11,21 +11,40 @@ import UIKit
 class SLEntryListTableViewController: UITableViewController {
     
     var entryList : [SLEntry] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addNewEntry))
+        
+        entryList = SLEntryDB.sharedInstance.getEntrys()
+        
+        //set tableview
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 130
+        
+        let tableTitle = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 25))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d, yyyy"
+        let dateString = dateFormatter.string(from: Date())
+        tableTitle.text = dateString
+        tableTitle.textAlignment = .center
+        tableTitle.textColor = UIColor.darkGray
+        
+        self.tableView.tableHeaderView = tableTitle
+        
+        //init navigationbar
+        self.navigationItem.title = "Timeline"
+        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.93, green:0.98, blue:0.96, alpha:1.00)
+        
+        self.navigationController?.navigationBar.tintColor = UIColor(red:0.00, green:0.73, blue:0.58, alpha:1.00)
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
-        
-        //mock for test
-        _ = SLEntryDB.sharedInstance.addEntry(ctext: "aaa", cimage: "111", clocation: "222", cdate: Date.init())
-        _ = SLEntryDB.sharedInstance.addEntry(ctext: "bbb", cimage: "111", clocation: "222", cdate: Date.init())
-        
-        self.entryList = SLEntryDB.sharedInstance.getEntrys()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //reload data
+        entryList = SLEntryDB.sharedInstance.getEntrys()
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,14 +66,37 @@ class SLEntryListTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! SLEntryTableViewCell
 
         // Configure the cell...
-        cell.textLabel?.text = self.entryList[indexPath.row].text
+        cell.entryTextView.text = self.entryList[indexPath.row].text
+        
+        let entryDate = self.entryList[indexPath.row].date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d, yyyy"
+        let dateString = dateFormatter.string(from: entryDate)
+        cell.timeLabel.text = dateString
+        
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        cell.entryImageView.image = UIImage(contentsOfFile: documentDirectory + self.entryList[indexPath.row].imagePath!)
+            
+        cell.locationLabel.text = self.entryList[indexPath.row].location
 
         return cell
     }
+    
+    func addNewEntry() {
+        let entryDetailViewController = storyboard?.instantiateViewController(withIdentifier: "entryDetail") as! SLEntryDetailViewController
+        let newEntry = SLEntryDB.sharedInstance.addEntry(ctext: "", cimagePath: "", clocation: "", cdate: Date())
+        
+        entryDetailViewController.entry = newEntry!
+        
+        self.navigationController?.pushViewController(entryDetailViewController, animated: true)
+    }
  
+//    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 130
+//    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -91,14 +133,20 @@ class SLEntryListTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
+    let segueIdentifier = "showEntryDetailSegue"
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == segueIdentifier, let destination = segue.destination as? SLEntryDetailViewController, let entryIndex = self.tableView.indexPathForSelectedRow?.row {
+            destination.entry = entryList[entryIndex]
+        }
+        
     }
-    */
+    
 
 }
