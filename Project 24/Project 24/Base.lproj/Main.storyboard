@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a3z-1H-tI2">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Collection View Controller-->
+        <scene sceneID="7D7-1f-O6o">
+            <objects>
+                <collectionViewController id="qBt-Rs-MtA" customClass="SLCollectionViewController" customModule="Project_24" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="kIe-Ox-0uB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LiC-Ox-YkR">
+                            <size key="itemSize" width="200" height="200"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="SeN-Dg-4yr" customClass="SLCollectionViewCell" customModule="Project_24" customModuleProvider="target">
+                                <rect key="frame" x="88" y="0.0" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y5d-v3-JmV">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Y5d-v3-JmV" secondAttribute="bottom" id="APJ-6V-TnO"/>
+                                    <constraint firstItem="Y5d-v3-JmV" firstAttribute="leading" secondItem="SeN-Dg-4yr" secondAttribute="leading" id="AeP-3E-5IO"/>
+                                    <constraint firstItem="Y5d-v3-JmV" firstAttribute="top" secondItem="SeN-Dg-4yr" secondAttribute="top" id="Qe4-Zv-5QH"/>
+                                    <constraint firstAttribute="trailing" secondItem="Y5d-v3-JmV" secondAttribute="trailing" id="UAL-dy-tsO"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="photoImageView" destination="Y5d-v3-JmV" id="Byu-XL-fv9"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="qBt-Rs-MtA" id="aX6-Va-P1O"/>
+                            <outlet property="delegate" destination="qBt-Rs-MtA" id="gnG-95-40Q"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="4ZU-qc-Vt7"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pZg-Os-wSj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1240.8" y="-471.8140929535233"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ebi-Kl-v0R">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a3z-1H-tI2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZnE-BZ-tHF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qBt-Rs-MtA" kind="relationship" relationship="rootViewController" id="Mao-zw-YmN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DPz-sK-uYx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="301.60000000000002" y="-471.8140929535233"/>
+        </scene>
+    </scenes>
+</document>
