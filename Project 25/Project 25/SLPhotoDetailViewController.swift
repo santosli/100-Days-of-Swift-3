@@ -12,8 +12,6 @@ class SLPhotoDetailViewController: UIViewController {
 
     @IBOutlet weak var photoImageView: UIImageView!
     
-    @IBOutlet weak var photoScrollView: UIScrollView!
-    
     var imageName : String = "";
     
     override func viewDidLoad() {
@@ -26,9 +24,6 @@ class SLPhotoDetailViewController: UIViewController {
         
         //init photo
         photoImageView.image = UIImage(named: imageName)
-        
-        //set content size
-        photoScrollView.contentSize = CGSize(width: 400, height: 2300)
     }
 }
 

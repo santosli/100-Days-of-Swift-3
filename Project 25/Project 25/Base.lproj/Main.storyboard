@@ -14,7 +14,7 @@
         <scene sceneID="Nk3-tb-RRW">
             <objects>
                 <collectionViewController id="C6h-GS-Wcr" customClass="SLCollectionViewController" customModule="Project_25" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="4Zp-L6-Hbq">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="4Zp-L6-Hbq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -126,7 +126,6 @@
                     <size key="freeformSize" width="375" height="800"/>
                     <connections>
                         <outlet property="photoImageView" destination="yXc-3o-JXK" id="IFd-1p-pop"/>
-                        <outlet property="photoScrollView" destination="8iY-f4-O1r" id="0Is-Lq-Ryp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IWU-cb-n0d" userLabel="First Responder" sceneMemberID="firstResponder"/>
