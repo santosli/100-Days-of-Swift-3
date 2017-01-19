@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B3609B31E30D54E00D9712F /* SLSearchResultCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3609B11E30D54E00D9712F /* SLSearchResultCollectionViewController.swift */; };
+		6B3609B71E30D89600D9712F /* SLSearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3609B51E30D89600D9712F /* SLSearchCollectionViewCell.swift */; };
+		6B3609B81E30D89600D9712F /* SLSearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B3609B61E30D89600D9712F /* SLSearchCollectionViewCell.xib */; };
 		6BABE9FE1E2DC81D0095A225 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABE9FD1E2DC81D0095A225 /* AppDelegate.swift */; };
 		6BABEA001E2DC81D0095A225 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABE9FF1E2DC81D0095A225 /* ViewController.swift */; };
 		6BABEA031E2DC81D0095A225 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BABEA011E2DC81D0095A225 /* Main.storyboard */; };
@@ -42,6 +45,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B3609B11E30D54E00D9712F /* SLSearchResultCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSearchResultCollectionViewController.swift; sourceTree = "<group>"; };
+		6B3609B51E30D89600D9712F /* SLSearchCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		6B3609B61E30D89600D9712F /* SLSearchCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLSearchCollectionViewCell.xib; sourceTree = "<group>"; };
 		6BABE9FA1E2DC81D0095A225 /* Project 30.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project 30.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BABE9FD1E2DC81D0095A225 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6BABE9FF1E2DC81D0095A225 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +95,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B36099C1E2F84FA00D9712F /* searchView */ = {
+			isa = PBXGroup;
+			children = (
+				6B3609B11E30D54E00D9712F /* SLSearchResultCollectionViewController.swift */,
+				6B3609B51E30D89600D9712F /* SLSearchCollectionViewCell.swift */,
+				6B3609B61E30D89600D9712F /* SLSearchCollectionViewCell.xib */,
+			);
+			name = searchView;
+			sourceTree = "<group>";
+		};
 		6BABE9F11E2DC81D0095A225 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +130,7 @@
 				6BABEA061E2DC81D0095A225 /* LaunchScreen.storyboard */,
 				6BABEA091E2DC81D0095A225 /* Info.plist */,
 				6BABE9FF1E2DC81D0095A225 /* ViewController.swift */,
+				6B36099C1E2F84FA00D9712F /* searchView */,
 				6BABEA431E2E18990095A225 /* tableView */,
 				6BABEA421E2E18820095A225 /* collectionView */,
 				6BABEA151E2DCD680095A225 /* sources */,
@@ -249,6 +266,7 @@
 				6BABEA361E2DCD810095A225 /* 10.jpg in Resources */,
 				6BABEA3D1E2DCD810095A225 /* 17.jpg in Resources */,
 				6BABEA081E2DC81D0095A225 /* LaunchScreen.storyboard in Resources */,
+				6B3609B81E30D89600D9712F /* SLSearchCollectionViewCell.xib in Resources */,
 				6BABEA051E2DC81D0095A225 /* Assets.xcassets in Resources */,
 				6BABEA411E2DCD810095A225 /* 21.jpg in Resources */,
 				6BABEA031E2DC81D0095A225 /* Main.storyboard in Resources */,
@@ -270,6 +288,8 @@
 				6BABEA121E2DCA930095A225 /* SLCollectionHeaderViewCell.swift in Sources */,
 				6BABEA001E2DC81D0095A225 /* ViewController.swift in Sources */,
 				6BABE9FE1E2DC81D0095A225 /* AppDelegate.swift in Sources */,
+				6B3609B31E30D54E00D9712F /* SLSearchResultCollectionViewController.swift in Sources */,
+				6B3609B71E30D89600D9712F /* SLSearchCollectionViewCell.swift in Sources */,
 				6BABEA101E2DCA360095A225 /* SLCollectionReusableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

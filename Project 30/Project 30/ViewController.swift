@@ -19,14 +19,17 @@ class ViewController: UIViewController {
     
     let collectionViewIdentifier = "collectionView"
     let collectionViewHeaderIdentifier = "collectionHeaderView"
+    let collectionSearchViewIdentifier = "collectionSearchView"
     let collectionHeaderIdentifier = "collectionHeader"
     let tableCellIdentifier = "tableCell"
     
     var tableView: UITableView!
     
+    var searchController: UISearchController!
+    var searchResultViewController: SLSearchResultCollectionViewController!
+    
     let width = UIScreen.main.bounds.width
     let heigth = UIScreen.main.bounds.height
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +39,9 @@ class ViewController: UIViewController {
         
         //init sub tableview
         initSubTableView()
+        
+        //init search view
+        initSearchView()
     }
     
     func initSubCollectionView() {
@@ -54,16 +60,55 @@ class ViewController: UIViewController {
     }
     
     func initSubTableView() {
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: width, height: heigth - 64))
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: width, height: heigth))
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib.init(nibName: "SLTableViewCell", bundle: nil), forCellReuseIdentifier: tableCellIdentifier)
         tableView.backgroundColor = .black
         self.view.insertSubview(tableView, belowSubview: collectionView)
     }
+    
+    func initSearchView() {
+        let layoutB: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layoutB.itemSize = CGSize(width: width/3, height: 200)
+        layoutB.sectionInset = UIEdgeInsets(top: 15, left: 0, bottom: 10, right: 0)
+        layoutB.minimumInteritemSpacing = 0
+        layoutB.minimumLineSpacing = 0
+        
+        searchResultViewController = SLSearchResultCollectionViewController(collectionViewLayout: layoutB)
+    }
 
     @IBAction func goSearch(_ sender: UIBarButtonItem) {
+        beginSearch()
     }
+    
+    func beginSearch() {
+        //init searchController
+        searchController = UISearchController(searchResultsController: searchResultViewController)
+        
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        
+        //set delegate
+        searchController.searchResultsUpdater = searchResultViewController
+        searchController.searchBar.delegate = self
+        
+        //set search bar color
+        searchController.searchBar.backgroundColor = .black
+        searchController.searchBar.tintColor = UIColor(red:0.89, green:0.74, blue:0.35, alpha:1.00)
+        searchController.searchBar.barStyle = .blackTranslucent
+        let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField
+        textField?.textColor = .white
+        
+        //set sub search bar
+        self.navigationController?.navigationBar.addSubview(searchController.searchBar)
+        searchController.hidesNavigationBarDuringPresentation = false
+        
+        searchController.searchBar.becomeFirstResponder()
+        
+        definesPresentationContext = true
+    }
+
     
     @IBAction func switchView(_ sender: Any) {
         switch (sender as! UISegmentedControl).selectedSegmentIndex {
@@ -97,7 +142,7 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
             
             return cell
             
-        } else {
+        }else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionViewHeaderIdentifier, for: indexPath) as! SLCollectionHeaderViewCell
             
             let imageName = String(indexPath.row) + ".jpg"
@@ -154,23 +199,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-
-extension UIImage {
-    func resizeImageWithFactor(scale: CGFloat) -> UIImage {
-        let newSize = CGSize(width: size.width/scale, height: size.height/scale)
-        
-        // Guard newSize is different
-        guard self.size != newSize else { return self }
-        
-        // This is the rect that we've calculated out and this is what is actually used below
-        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-        
-        // Actually do the resizing to the rect using the ImageContext stuff
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
-        self.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage!
+//MARK: - UISearchBarDelegate
+extension ViewController: UISearchBarDelegate, UISearchControllerDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.showsCancelButton = false
+        searchBar.endEditing(true)
+        //remove sub search view
+        searchBar.removeFromSuperview()
     }
 }
