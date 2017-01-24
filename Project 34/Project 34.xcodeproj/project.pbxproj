@@ -17,6 +17,12 @@
 		6BC325561E361B3A004055D7 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC325531E361B3A004055D7 /* settings.png */; };
 		6BC325581E3621D7004055D7 /* googlelog.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC325571E3621D7004055D7 /* googlelog.png */; };
 		6BC3255E1E36FF87004055D7 /* voice.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC3255D1E36FF87004055D7 /* voice.png */; };
+		6BC325601E372FB2004055D7 /* SLSpeakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC3255F1E372FB2004055D7 /* SLSpeakerViewController.swift */; };
+		6BC325621E373A7B004055D7 /* SLSpeakerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC325611E373A7B004055D7 /* SLSpeakerSegue.swift */; };
+		6BC325651E374CA2004055D7 /* ic_clear.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC325631E374CA2004055D7 /* ic_clear.png */; };
+		6BC325661E374CA2004055D7 /* ic_language.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC325641E374CA2004055D7 /* ic_language.png */; };
+		6BC325681E37573C004055D7 /* redvoice.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC325671E37573C004055D7 /* redvoice.png */; };
+		6BC3256A1E3766F0004055D7 /* SLSpeakerBackSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC325691E3766F0004055D7 /* SLSpeakerBackSegue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +38,12 @@
 		6BC325531E361B3A004055D7 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		6BC325571E3621D7004055D7 /* googlelog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = googlelog.png; sourceTree = "<group>"; };
 		6BC3255D1E36FF87004055D7 /* voice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = voice.png; sourceTree = "<group>"; };
+		6BC3255F1E372FB2004055D7 /* SLSpeakerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSpeakerViewController.swift; sourceTree = "<group>"; };
+		6BC325611E373A7B004055D7 /* SLSpeakerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSpeakerSegue.swift; sourceTree = "<group>"; };
+		6BC325631E374CA2004055D7 /* ic_clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_clear.png; sourceTree = "<group>"; };
+		6BC325641E374CA2004055D7 /* ic_language.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_language.png; sourceTree = "<group>"; };
+		6BC325671E37573C004055D7 /* redvoice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redvoice.png; sourceTree = "<group>"; };
+		6BC325691E3766F0004055D7 /* SLSpeakerBackSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSpeakerBackSegue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +78,9 @@
 			children = (
 				6B360A131E35F69A00D9712F /* AppDelegate.swift */,
 				6B360A151E35F69A00D9712F /* ViewController.swift */,
+				6BC3255F1E372FB2004055D7 /* SLSpeakerViewController.swift */,
+				6BC325611E373A7B004055D7 /* SLSpeakerSegue.swift */,
+				6BC325691E3766F0004055D7 /* SLSpeakerBackSegue.swift */,
 				6B360A171E35F69A00D9712F /* Main.storyboard */,
 				6B360A1A1E35F69A00D9712F /* Assets.xcassets */,
 				6B360A1C1E35F69A00D9712F /* LaunchScreen.storyboard */,
@@ -78,6 +93,9 @@
 		6B360A251E35FDD300D9712F /* resouces */ = {
 			isa = PBXGroup;
 			children = (
+				6BC325671E37573C004055D7 /* redvoice.png */,
+				6BC325631E374CA2004055D7 /* ic_clear.png */,
+				6BC325641E374CA2004055D7 /* ic_language.png */,
 				6BC3255D1E36FF87004055D7 /* voice.png */,
 				6BC325571E3621D7004055D7 /* googlelog.png */,
 				6BC325511E361B3A004055D7 /* reorder.png */,
@@ -152,8 +170,11 @@
 				6BC325541E361B3A004055D7 /* reorder.png in Resources */,
 				6B360A1B1E35F69A00D9712F /* Assets.xcassets in Resources */,
 				6BC325551E361B3A004055D7 /* searchbar.png in Resources */,
+				6BC325651E374CA2004055D7 /* ic_clear.png in Resources */,
 				6BC325581E3621D7004055D7 /* googlelog.png in Resources */,
 				6B360A191E35F69A00D9712F /* Main.storyboard in Resources */,
+				6BC325661E374CA2004055D7 /* ic_language.png in Resources */,
+				6BC325681E37573C004055D7 /* redvoice.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,7 +186,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B360A161E35F69A00D9712F /* ViewController.swift in Sources */,
+				6BC3256A1E3766F0004055D7 /* SLSpeakerBackSegue.swift in Sources */,
 				6B360A141E35F69A00D9712F /* AppDelegate.swift in Sources */,
+				6BC325621E373A7B004055D7 /* SLSpeakerSegue.swift in Sources */,
+				6BC325601E372FB2004055D7 /* SLSpeakerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

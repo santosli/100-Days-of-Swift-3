@@ -84,7 +84,11 @@ class ViewController: UIViewController {
         voiceIconView.backgroundColor = .white
         voiceIconView.contentMode = .center
         voiceIconView.alpha = initAlpha
-
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showSpeakerView))
+        voiceIconView.isUserInteractionEnabled = true
+        voiceIconView.addGestureRecognizer(tapGesture)
+        
         self.view.addSubview(voiceIconView)
 
 }
@@ -151,6 +155,18 @@ class ViewController: UIViewController {
         
         return newImage!
     }
+    
+    let segueIdentifier = "showSpeaker"
+    
+    func showSpeakerView() {
+        self.performSegue(withIdentifier: segueIdentifier, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
 
+    @IBAction func unwindToFirst(segue: UIStoryboardSegue) {}
 }
 
