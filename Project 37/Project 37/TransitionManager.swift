@@ -15,7 +15,7 @@ class TransitionManager: NSObject,UIViewControllerAnimatedTransitioning, UIViewC
 
     init(operation: UINavigationControllerOperation) {
         _operationType = operation
-        _transitionDuration = 0.2
+        _transitionDuration = 0.3
     }
     
     // MARK: UIViewControllerAnimatedTransitioning protocol methods
@@ -70,47 +70,32 @@ class TransitionManager: NSObject,UIViewControllerAnimatedTransitioning, UIViewC
             let toView = transitionContext.view(forKey: UITransitionContextViewKey.to)!
             let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)! as! SLCollectionViewController
             let toCollectionView = toViewController.collectionView!
-            let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!
-            let fromView = fromViewController.view!
-            let currentCell = toViewController.sourceCell!
+            let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)! as! SLImageViewController
+            let currentCell = toViewController.sourceCell! as! SLImageCollectionViewCell
             
             // Add destination view to the container view
             container.addSubview(toView)
             
             // Prepare the screenshot of the source view for animation
-            let screenshotFromView = UIImageView(image: fromView.screenshot)
-            screenshotFromView.frame = fromView.frame
+            let screenshotFromView = UIImageView(image: fromViewController.largeImageView.screenshot)
+            screenshotFromView.frame = fromViewController.largeImageView.frame
+            container.addSubview(screenshotFromView)
             
-            // Prepare the screenshot of the destination view for animation
-            let screenshotToView = UIImageView(image: currentCell.screenshot)
-            screenshotToView.frame = screenshotFromView.frame
-            
-            // Add screenshots to transition container to set-up the animation
-            container.addSubview(screenshotToView)
-            container.insertSubview(screenshotFromView, belowSubview: screenshotToView)
-            
-            // Set views initial states
-            screenshotToView.alpha = 0.0
-            fromView.isHidden = true
+            fromViewController.largeImageView.alpha = 0.0
+            toView.alpha = 0.0
             currentCell.isHidden = true
             
             let containerCoord = toCollectionView.convert(currentCell.frame.origin, to: container)
             
             UIView.animate(withDuration: _transitionDuration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [UIViewAnimationOptions.curveEaseOut], animations: { () -> Void in
-                
-                screenshotToView.alpha = 1.0
-                
-                screenshotFromView.frame = currentCell.frame
+                screenshotFromView.frame = currentCell.imageView.frame
                 screenshotFromView.frame.origin = containerCoord
-                
-                screenshotToView.frame = screenshotFromView.frame
-
+                toView.alpha = 1.0
                 
             }) { _ in
-                
+                fromViewController.largeImageView.alpha = 1.0
                 currentCell.isHidden = false
                 screenshotFromView.removeFromSuperview()
-                screenshotToView.removeFromSuperview()
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
                 
             }
@@ -122,18 +107,4 @@ class TransitionManager: NSObject,UIViewControllerAnimatedTransitioning, UIViewC
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return _transitionDuration
     }
-    
-    // MARK: UIViewControllerTransitioningDelegate protocol methods
-    
-    // return the animataor when presenting a viewcontroller
-    // remmeber that an animator (or animation controller) is any object that aheres to the UIViewControllerAnimatedTransitioning protocol
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return self
-    }
-    
-    // return the animator used when dismissing from a viewcontroller
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return self
-    }
-
 }

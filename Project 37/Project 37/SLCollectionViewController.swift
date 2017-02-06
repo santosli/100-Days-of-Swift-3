@@ -15,7 +15,7 @@ class SLCollectionViewController: UICollectionViewController {
     let segueIdetifier = "showLargeImage"
 
     let imageCount = 8
-    let width = UIScreen.main.bounds.width
+    let width = UIScreen.main.bounds.size.width
     var sourceCell: UICollectionViewCell?
 
     override func viewDidLoad() {
@@ -28,9 +28,12 @@ class SLCollectionViewController: UICollectionViewController {
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         collectionView?.collectionViewLayout = layout
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.delegate = self
     }
+
  
 
     // MARK: UICollectionViewDataSource
@@ -79,8 +82,8 @@ extension SLCollectionViewController: UINavigationControllerDelegate {
     }
     
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
         return TransitionManager(operation: operation)
+
     }
     
     
