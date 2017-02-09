@@ -9,6 +9,10 @@
 import UIKit
 
 class SLTableViewController: UITableViewController {
+    
+    private let tableHeaderHeight: CGFloat = 375.0
+    
+    var headerView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,11 +23,30 @@ class SLTableViewController: UITableViewController {
         self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         self.navigationController?.navigationBar.isTranslucent = true
         self.automaticallyAdjustsScrollViewInsets = false
-        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: nil)
-        
         self.navigationController?.navigationBar.tintColor = .black
-
+        
+        //set header
+        headerView = tableView.tableHeaderView
+        tableView.tableHeaderView = nil
+        tableView.addSubview(headerView)
+        tableView.contentInset = UIEdgeInsets(top: tableHeaderHeight, left: 0, bottom: 0, right: 0)
+        tableView.contentOffset = CGPoint(x: 0, y: -tableHeaderHeight)
+        updateHeaderView()
+    }
+    
+    func updateHeaderView() {
+        var headerRect = CGRect(x: 0, y: -tableHeaderHeight, width: tableView.bounds.width, height: tableHeaderHeight)
+        if tableView.contentOffset.y < -tableHeaderHeight {
+            headerRect.origin.y = tableView.contentOffset.y
+            headerRect.size.height = -tableView.contentOffset.y
+        }
+        
+        headerView.frame = headerRect
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateHeaderView()
     }
 
     // MARK: - Table view data source
@@ -48,3 +71,9 @@ class SLTableViewController: UITableViewController {
     }
 
 }
+
+//extension SLTableViewController: UIScrollViewDelegate {
+//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        updateHeaderView()
+//    }
+//}
